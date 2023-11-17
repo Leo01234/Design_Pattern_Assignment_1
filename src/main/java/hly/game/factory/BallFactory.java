@@ -48,10 +48,13 @@ public class BallFactory implements Factory{
 
         cbb.setRadius();
 
+        cbb.setColour();
+
         JSONObject jsonVelocity = (JSONObject) jsonBall.get("velocity");
         Double xVel = (Double) (jsonVelocity).get("x");
         Double yVel = (Double) (jsonVelocity).get("y");
-        cbb.setPosition(xVel,yVel);
+        cbb.setVel(xVel,yVel);
+//        System.out.println("x:"+xVel+",y:"+yVel);
 
         Double mass = (Double) jsonBall.get("mass");
         cbb.setMass(mass);

@@ -10,13 +10,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class App extends Application {
-
     private static final String TITLE = "Bouncy Ball";
-    private static final double DIM_X = 800.0;
-    private static final double DIM_Y = 600.0;
+    private static final String CONFIG_PATH = "src/main/resources/config.json";
     private static final double FRAMETIME = 1.0/60.0;
     public static final double BALL_RADIUS = 15.0;
-
     @Override
     public void start(Stage stage) throws Exception {
         Group root = new Group();
@@ -27,12 +24,9 @@ public class App extends Application {
         stage.show();
 
         // setup drawables
-        stage.setWidth(DIM_X);
-        stage.setHeight(DIM_Y);
-        stage.setResizable(false);
-        Canvas canvas = new Canvas(DIM_X, DIM_Y);
-        root.getChildren().add(canvas);
-        Game game = new Game(DIM_X, DIM_Y, canvas);
+        Game game = new Game(CONFIG_PATH);
+        game.setStage(stage);
+        game.addCanvas(root);
         game.addDrawables(root);
 
         // setup frames

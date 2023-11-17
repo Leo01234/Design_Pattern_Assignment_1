@@ -13,6 +13,7 @@ public interface BallBuilder {
     void setPosition(double xPos, double yPos);
 
     void setRadius();
+    void setColour();
 
     void setVel(double xVel, double yVel);
 

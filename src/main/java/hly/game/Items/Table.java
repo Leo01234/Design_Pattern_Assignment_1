@@ -10,16 +10,35 @@ import javafx.scene.shape.Rectangle;
  * @author Leo01234
  * @version 1.0
  */
-public class Table implements Drawable{
+public class Table implements Drawable {
     //include properties: xSize, ySize
     private final Rectangle shape;
 
     private double friction;
-    public Table(long xSize, long ySize, String colour, double friction){
-        this.shape = new Rectangle(xSize,ySize);
+
+    public Table(long xSize, long ySize, String colour, double friction) {
+        this.shape = new Rectangle(xSize, ySize);
         this.shape.setFill(Color.valueOf(colour));
-        this.friction=friction;
+        this.friction = friction;
     }
+
+    public double getXSize() {
+        return shape.getWidth();
+    }
+
+
+    public double getYSize() {
+        return shape.getHeight();
+    }
+
+    public double getFriction() {
+        return friction;
+    }
+
+    public void setFriction(double friction) {
+        this.friction = friction;
+    }
+
     @Override
     public Node getNode() {
         return this.shape;
@@ -28,5 +47,10 @@ public class Table implements Drawable{
     @Override
     public void addToGroup(ObservableList<Node> group) {
         group.add(this.shape);
+    }
+
+    @Override
+    public void removeFromGroup(ObservableList<Node> group) {
+        group.remove(this.shape);
     }
 }

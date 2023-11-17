@@ -17,6 +17,7 @@ public abstract class Ball implements Movable, Drawable {
         this.shape = new Circle();
     }
 
+    public abstract void setColour();
     @Override
     public Node getNode() {
         return this.shape;
@@ -28,62 +29,51 @@ public abstract class Ball implements Movable, Drawable {
     }
 
     @Override
-    public double getXPos() {
-        return this.shape.getCenterX();
+    public void removeFromGroup(ObservableList<Node> group) {
+        group.remove(this.shape);
     }
 
+    // =============getters================
     @Override
-    public double getYPos() {
-        return this.shape.getCenterY();
+    public Point2D getPos(){
+        return new Point2D(this.shape.getCenterX(),this.shape.getCenterY());
     }
-    public double getRadius(){
+
+    public double getRadius() {
         return this.shape.getRadius();
     }
 
     @Override
-    public double getXVel() {
-        return this.velocity.getX();
+    public Point2D getVel() {
+        return velocity;
     }
 
-    @Override
-    public double getYVel() {
-        return this.velocity.getY();
-    }
     public double getMass() {
         return this.mass;
     }
 
+    // =============setters================
     @Override
-    public void setXPos(double xPos) {
-        this.shape.setCenterX(xPos);
+    public void setPos(Point2D pos) {
+        this.shape.setCenterX(pos.getX());
+        this.shape.setCenterY(pos.getY());
     }
 
-    @Override
-    public void setYPos(double yPos) {
-        this.shape.setCenterY(yPos);
-    }
-    public void setRadius(double radius){
+    public void setRadius(double radius) {
         this.shape.setRadius(radius);
     }
 
     @Override
-    public void setXVel(double xVel) {
-        this.velocity = new Point2D(xVel, getYVel());
+    public void setVel(Point2D vel) {
+        this.velocity = vel;
     }
 
-    @Override
-    public void setYVel(double yVel) {
-        this.velocity= new Point2D(getXVel(),yVel);
-    }
     public void setMass(double mass) {
         this.mass = mass;
     }
 
     @Override
     public void move() {
-        double xPos = getXPos() + getXVel();
-        double yPos = getYPos() + getYVel();
-        setXPos(xPos);
-        setYPos(yPos);
+        setPos(getPos().add(getVel()));
     }
 }
