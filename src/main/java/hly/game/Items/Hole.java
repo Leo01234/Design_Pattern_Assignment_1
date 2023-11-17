@@ -1,6 +1,8 @@
 package hly.game.Items;
 
+import hly.game.App;
 import javafx.collections.ObservableList;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -10,37 +12,19 @@ import javafx.scene.shape.Rectangle;
  * @author Leo01234
  * @version 1.0
  */
-public class Table implements Drawable {
+public class Hole implements Drawable{
     private ObservableList<Node> group;
     private boolean isInGroup = false;
-    //include properties: xSize, ySize
-    private final Rectangle shape;
+    //include properties: xPos, yPos, radius
+    private final Circle shape;
 
-    private double friction;
-
-    public Table(long xSize, long ySize, String colour, double friction) {
-        this.shape = new Rectangle(xSize, ySize);
-        this.shape.setFill(Color.valueOf(colour));
-        this.friction = friction;
+    public Hole(double xPos,double yPos) {
+        this.shape = new Circle(xPos,yPos, App.HOLE_RADIUS);
+        this.shape.setFill(Color.valueOf("black"));
     }
-
-    public double getXSize() {
-        return shape.getWidth();
+    public Point2D getPos(){
+        return new Point2D(this.shape.getCenterX(),this.shape.getCenterY());
     }
-
-
-    public double getYSize() {
-        return shape.getHeight();
-    }
-
-    public double getFriction() {
-        return friction;
-    }
-
-    public void setFriction(double friction) {
-        this.friction = friction;
-    }
-
     @Override
     public Node getNode() {
         return this.shape;

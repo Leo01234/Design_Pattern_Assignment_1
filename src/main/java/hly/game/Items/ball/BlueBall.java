@@ -13,4 +13,5 @@ public class BlueBall extends Ball {
     public void setColour() {
         ((Shape) getNode()).setFill(Color.valueOf("blue"));
     }
+
 }

@@ -5,6 +5,10 @@ import hly.game.Items.ball.Ball;
 import hly.game.Items.ball.BlueBall;
 import hly.game.Items.ball.RedBall;
 import hly.game.Items.ball.WhiteBall;
+import hly.game.strategy.BackAndDisappear;
+import hly.game.strategy.BallInHoleStrategy;
+import hly.game.strategy.Disappear;
+import hly.game.strategy.GameOver;
 import javafx.geometry.Point2D;
 
 /**
@@ -32,6 +36,11 @@ public class ConcreteBallBuilder implements BallBuilder {
     }
 
     @Override
+    public void setInitPosition(double xPos, double yPos) {
+        ball.setInitPos(new Point2D(xPos,yPos));
+    }
+
+    @Override
     public void setPosition(double xPos, double yPos) {
         ball.setPos(new Point2D(xPos, yPos));
     }
@@ -54,6 +63,23 @@ public class ConcreteBallBuilder implements BallBuilder {
     @Override
     public void setMass(double mass) {
         ball.setMass(mass);
+    }
+
+    @Override
+    public void setStrategy(String colour) {
+        switch (colour) {
+            case "white":
+                ball.setStrategy(new GameOver());
+                break;
+            case "red":
+                ball.setStrategy(new Disappear());
+                break;
+            case "blue":
+                ball.setStrategy(new BackAndDisappear());
+                break;
+            default:
+                throw new RuntimeException("Colour config wrong!");
+        }
     }
 
     @Override

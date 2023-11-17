@@ -38,12 +38,14 @@ public class BallFactory implements Factory{
 
         ConcreteBallBuilder cbb = new ConcreteBallBuilder();
         // the ball colour is a String
-        cbb.createBall((String) jsonBall.get("colour"));
+        String colour = (String) jsonBall.get("colour");
+        cbb.createBall(colour);
 
         // the ball position, velocity, mass are all doubles
         JSONObject jsonPosition = (JSONObject) jsonBall.get("position");
         Double xPos = (Double) (jsonPosition).get("x");
         Double yPos = (Double) (jsonPosition).get("y");
+        cbb.setInitPosition(xPos,yPos);
         cbb.setPosition(xPos,yPos);
 
         cbb.setRadius();
@@ -57,6 +59,8 @@ public class BallFactory implements Factory{
 
         Double mass = (Double) jsonBall.get("mass");
         cbb.setMass(mass);
+
+        cbb.setStrategy(colour);
 
         return cbb.getResult();
     }

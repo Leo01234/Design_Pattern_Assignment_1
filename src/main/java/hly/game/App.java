@@ -14,7 +14,12 @@ public class App extends Application {
     private static final String CONFIG_PATH = "src/main/resources/config.json";
     private static final double FRAMETIME = 1.0/60.0;
     public static final double BALL_RADIUS = 15.0;
+
+    //hole radius should larger than / equal to ball radius
+    public static final double HOLE_RADIUS = 1.5 * BALL_RADIUS;
+    public static final double HOLE_EDGE_DISTANCE = 0.2 * HOLE_RADIUS;
     public static final double FRICTION_ADJUST = 10.0;
+    public static final double HIT_FORCE = 1.0/10.0;
     @Override
     public void start(Stage stage) throws Exception {
         Game game = new Game(CONFIG_PATH);

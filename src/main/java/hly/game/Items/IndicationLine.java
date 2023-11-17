@@ -1,46 +1,37 @@
 package hly.game.Items;
 
 import javafx.collections.ObservableList;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Line;
 
 /**
  * @author Leo01234
  * @version 1.0
  */
-public class Table implements Drawable {
+public class IndicationLine implements Drawable{
     private ObservableList<Node> group;
     private boolean isInGroup = false;
-    //include properties: xSize, ySize
-    private final Rectangle shape;
-
-    private double friction;
-
-    public Table(long xSize, long ySize, String colour, double friction) {
-        this.shape = new Rectangle(xSize, ySize);
-        this.shape.setFill(Color.valueOf(colour));
-        this.friction = friction;
+    private final Line shape;
+    public IndicationLine(){
+        this.shape=new Line();
     }
-
-    public double getXSize() {
-        return shape.getWidth();
+    public void setStart(Point2D start){
+        this.shape.setStartX(start.getX());
+        this.shape.setStartY(start.getY());
     }
-
-
-    public double getYSize() {
-        return shape.getHeight();
+    public Point2D getStart(){
+        return new Point2D(this.shape.getStartX(),this.shape.getStartY());
     }
-
-    public double getFriction() {
-        return friction;
+    public Point2D getEnd(){
+        return new Point2D(this.shape.getEndX(),this.shape.getEndY());
     }
-
-    public void setFriction(double friction) {
-        this.friction = friction;
+    public void setEndX(double endX){
+        this.shape.setEndX(endX);
     }
-
+    public void setEndY(double endY){
+        this.shape.setEndY(endY);
+    }
     @Override
     public Node getNode() {
         return this.shape;
@@ -71,6 +62,7 @@ public class Table implements Drawable {
             isInGroup = false;
         }
     }
+
     @Override
     public boolean getIsInGroup() {
         return isInGroup;
