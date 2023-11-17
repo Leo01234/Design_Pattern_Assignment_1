@@ -13,6 +13,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -153,8 +154,9 @@ public class Game {
             }
             isVictory=true;
             victoryText.setBoundsType(TextBoundsType.VISUAL);
-            victoryText.setFont(new Font(20));
-            victoryText.setText("你赢了！");
+            victoryText.setFont(new Font(30));
+            victoryText.setFill(Color.valueOf("white"));
+            victoryText.setText("YOU WIN!");
             victoryText.setTextAlignment(TextAlignment.CENTER);
             victoryText.setTextOrigin(VPos.CENTER);
 
