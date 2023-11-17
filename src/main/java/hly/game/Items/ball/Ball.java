@@ -72,8 +72,16 @@ public abstract class Ball implements Movable, Drawable {
         this.mass = mass;
     }
 
+    public void reverseXVel(){
+        this.velocity = new Point2D(-this.velocity.getX(),this.velocity.getY());
+    }
+    public void reverseYVel(){
+        this.velocity = new Point2D(this.velocity.getX(),-this.velocity.getY());
+    }
     @Override
     public void move() {
-        setPos(getPos().add(getVel()));
+        if(getVel()!= Point2D.ZERO) {
+            setPos(getPos().add(getVel()));
+        }
     }
 }

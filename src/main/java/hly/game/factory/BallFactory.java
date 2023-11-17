@@ -54,7 +54,6 @@ public class BallFactory implements Factory{
         Double xVel = (Double) (jsonVelocity).get("x");
         Double yVel = (Double) (jsonVelocity).get("y");
         cbb.setVel(xVel,yVel);
-//        System.out.println("x:"+xVel+",y:"+yVel);
 
         Double mass = (Double) jsonBall.get("mass");
         cbb.setMass(mass);

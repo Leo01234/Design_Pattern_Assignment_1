@@ -14,18 +14,21 @@ public class App extends Application {
     private static final String CONFIG_PATH = "src/main/resources/config.json";
     private static final double FRAMETIME = 1.0/60.0;
     public static final double BALL_RADIUS = 15.0;
+    public static final double FRICTION_ADJUST = 10.0;
     @Override
     public void start(Stage stage) throws Exception {
-        Group root = new Group();
-        Scene scene = new Scene(root);
+        Game game = new Game(CONFIG_PATH);
 
+        Group root = new Group();
+        Scene scene = new Scene(root,game.getWidth(),game.getHeight());
+
+        stage.setResizable(false);
+        stage.sizeToScene();
         stage.setScene(scene);
         stage.setTitle(TITLE);
         stage.show();
 
         // setup drawables
-        Game game = new Game(CONFIG_PATH);
-        game.setStage(stage);
         game.addCanvas(root);
         game.addDrawables(root);
 

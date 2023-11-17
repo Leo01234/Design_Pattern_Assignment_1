@@ -47,11 +47,11 @@ public class Game {
             balls.add(ball);
         }
     }
-
-    public void setStage(Stage stage) {
-        stage.setWidth(table.getXSize());
-        stage.setHeight(table.getYSize());
-        stage.setResizable(false);
+    public double getWidth(){
+        return table.getXSize();
+    }
+    public double getHeight(){
+        return table.getYSize();
     }
 
     public void addCanvas(Group root) {
@@ -74,7 +74,7 @@ public class Game {
         for (Ball ball : balls) {
             Point2D vel = ball.getVel();
             if (vel != Point2D.ZERO) {
-                double newMagnitude = vel.magnitude() - friction;
+                double newMagnitude = vel.magnitude() - friction * ball.getMass() / App.FRICTION_ADJUST;
                 if (newMagnitude <= 0) {
                     ball.setVel(Point2D.ZERO);
                 } else {
@@ -108,21 +108,15 @@ public class Game {
 
                 //with table edges
                 Bounds ballBounds = ballA.getNode().getBoundsInLocal();
-                if (ballBounds.getMinX() <= tableBounds.getMinX() ||
-                        ballBounds.getMaxX() >= tableBounds.getMaxX()) {
-                    Point2D vel = ballA.getVel();
-                    double xVel = vel.getX();
-                    double yVel = vel.getY();
-                    ballA.setVel(new Point2D(-xVel,yVel));
+                if ((ballBounds.getMinX() <= tableBounds.getMinX() && ballA.getVel().getX() < 0)
+                        || (ballBounds.getMaxX() >= tableBounds.getMaxX() && ballA.getVel().getX() > 0)) {
+                    ballA.reverseXVel();
+                }
+                if ((ballBounds.getMinY() <= tableBounds.getMinY() && ballA.getVel().getY() < 0)
+                        || (ballBounds.getMaxY() >= tableBounds.getMaxY() && ballA.getVel().getY() > 0)) {
+                    ballA.reverseYVel();
                 }
 
-                if (ballBounds.getMinY() <= tableBounds.getMinY() ||
-                        ballBounds.getMaxY() >= tableBounds.getMaxY()) {
-                    Point2D vel = ballA.getVel();
-                    double xVel = vel.getX();
-                    double yVel = vel.getY();
-                    ballA.setVel(new Point2D(xVel,-yVel));
-                }
             }
         }
     }
