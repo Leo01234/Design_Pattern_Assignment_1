@@ -1,5 +1,6 @@
 package hly.game.ballbuilder;
 
+import hly.game.App;
 import hly.game.Items.ball.Ball;
 import hly.game.Items.ball.BlueBall;
 import hly.game.Items.ball.RedBall;
@@ -36,7 +37,7 @@ public class ConcreteBallBuilder implements BallBuilder{
 
     @Override
     public void setRadius() {
-        ball.setRadius(RADIUS);
+        ball.setRadius(App.BALL_RADIUS);
     }
 
     @Override

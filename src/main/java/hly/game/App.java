@@ -15,6 +15,7 @@ public class App extends Application {
     private static final double DIM_X = 800.0;
     private static final double DIM_Y = 600.0;
     private static final double FRAMETIME = 1.0/60.0;
+    public static final double BALL_RADIUS = 15.0;
 
     @Override
     public void start(Stage stage) throws Exception {

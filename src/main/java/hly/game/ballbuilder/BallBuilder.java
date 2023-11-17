@@ -8,8 +8,6 @@ import hly.game.Items.ball.Ball;
  */
 public interface BallBuilder {
 
-    double RADIUS = 15.0;
-
     void createBall(String colour);
 
     void setPosition(double xPos, double yPos);
